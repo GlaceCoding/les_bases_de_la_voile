@@ -1,5 +1,8 @@
 # les_bases_de_la_voile
-Site statisque sur les bases de la voiles (Notamment pour Hobie Cat)
+
+**NOTE:** Le site est actuellement en construction.
+
+Site statique sur les bases de la voiles (Notamment pour Hobie Cat)
 
 # Les sources :
 
