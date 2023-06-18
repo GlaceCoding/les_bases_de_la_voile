@@ -17,3 +17,9 @@ Site statique sur les bases de la voiles (Notamment pour Hobie Cat)
    - https://catamaran-de-rando.typepad.fr/files/reglages_escarret.pdf
  - Virement de bord en catamaran: https://www.youtube.com/watch?v=CxrUuh-Szk8
  - Empannage en catamaran: https://www.youtube.com/watch?v=wtgyY1SwWYw&list=PLiRqhTTxhF9S6r5UVU8dJlW-uiA8B-_H9&index=3
+
+# Build the website
+
+*Pour l'instant je n'ai choisi aucun moteur de template pour générer le site statique*
+
+Un simple `python3 -m http.server 8000` suffit à voir les premiers outils.
