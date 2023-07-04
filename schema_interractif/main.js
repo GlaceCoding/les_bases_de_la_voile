@@ -15,57 +15,57 @@ const _allures_details = [
 ]
 
 const _allures = [
-  [40, 'Vent debout', 0, (context, angleVoile, windAngle, pivot) => {
+  [40, 'Vent debout', 0, (context, angle, pivot) => {
     context.quadraticCurveTo.apply(context, [
-      ...pos2arg(pos_add(rotate_pos(xy2pos(0, 19), 0), pivot)),
-      ...pos2arg(pos_add(rotate_pos(xy2pos(0, 38), 0), pivot))
+      ...pos2arg(pos_add(rotate_pos(xy2pos(0, 19), angle), pivot)),
+      ...pos2arg(pos_add(rotate_pos(xy2pos(0, 38), angle), pivot))
     ])
     context.quadraticCurveTo.apply(context, [
-      ...pos2arg(pos_add(rotate_pos(xy2pos(0, 19), 0), pivot)),
+      ...pos2arg(pos_add(rotate_pos(xy2pos(0, 19), angle), pivot)),
       ...pos2arg(pivot)
     ])
   }],
-  [65, 'Près', 0.666, (context, angleVoile, windAngle, pivot) => {
-    const side = (windAngle < 0) ? 1 : -1
+  [65, 'Près', 0.666, (context, angle, pivot) => {
+    const side = (angle < 0) ? 1 : -1
     context.quadraticCurveTo.apply(context, [
-      ...pos2arg(pos_add(rotate_pos(xy2pos(12 * side, 12), 0), pivot)),
-      ...pos2arg(pos_add(rotate_pos(xy2pos(2 * side, 30), 0), pivot))
+      ...pos2arg(pos_add(rotate_pos(xy2pos(12 * side, 12), angle), pivot)),
+      ...pos2arg(pos_add(rotate_pos(xy2pos(2 * side, 30), angle), pivot))
     ])
     context.quadraticCurveTo.apply(context, [
-      ...pos2arg(pos_add(rotate_pos(xy2pos(6 * side, 12), 0), pivot)),
+      ...pos2arg(pos_add(rotate_pos(xy2pos(6 * side, 12), angle), pivot)),
       ...pos2arg(pivot)
     ])
   }],
-  [120, 'Travers', 1, (context, angleVoile, windAngle, pivot) => {
-    const side = (windAngle < 0) ? 1 : -1
+  [120, 'Travers', 1, (context, angle, pivot) => {
+    const side = (angle < 0) ? 1 : -1
     context.quadraticCurveTo.apply(context, [
-      ...pos2arg(pos_add(rotate_pos(xy2pos(-13 * side, -10), Math.PI), pivot)),
-      ...pos2arg(pos_add(rotate_pos(xy2pos(-16 * side, -27), Math.PI), pivot))
+      ...pos2arg(pos_add(rotate_pos(xy2pos(-13 * side, -10), Math.PI + angle), pivot)),
+      ...pos2arg(pos_add(rotate_pos(xy2pos(-16 * side, -27), Math.PI + angle), pivot))
     ])
     context.quadraticCurveTo.apply(context, [
-      ...pos2arg(pos_add(rotate_pos(xy2pos(-13 * side, -1), Math.PI), pivot)),
+      ...pos2arg(pos_add(rotate_pos(xy2pos(-13 * side, -1), Math.PI + angle), pivot)),
       ...pos2arg(pivot)
     ])
   }],
-  [160, 'Largue', 0.666, (context, angleVoile, windAngle, pivot) => {
-    const side = (windAngle < 0) ? 1 : -1
+  [160, 'Largue', 0.666, (context, angle, pivot) => {
+    const side = (angle < 0) ? 1 : -1
     context.quadraticCurveTo.apply(context, [
-      ...pos2arg(pos_add(rotate_pos(xy2pos(14 * side, 0), 0), pivot)),
-      ...pos2arg(pos_add(rotate_pos(xy2pos(24 * side, 15), 0), pivot))
+      ...pos2arg(pos_add(rotate_pos(xy2pos(14 * side, 0), angle), pivot)),
+      ...pos2arg(pos_add(rotate_pos(xy2pos(24 * side, 15), angle), pivot))
     ])
     context.quadraticCurveTo.apply(context, [
-      ...pos2arg(pos_add(rotate_pos(xy2pos(11 * side, 7), 0), pivot)),
+      ...pos2arg(pos_add(rotate_pos(xy2pos(11 * side, 7), angle), pivot)),
       ...pos2arg(pivot)
     ])
   }],
-  [180, 'Vent arrière', 0.333, (context, angleVoile, windAngle, pivot) => {
-    const side = (windAngle < 0) ? 1 : -1
+  [180, 'Vent arrière', 0.333, (context, angle, pivot) => {
+    const side = (angle < 0) ? 1 : -1
     context.quadraticCurveTo.apply(context, [
-      ...pos2arg(pos_add(rotate_pos(xy2pos(19 * side, -10), 0), pivot)),
-      ...pos2arg(pos_add(rotate_pos(xy2pos(38 * side, 0), 0), pivot))
+      ...pos2arg(pos_add(rotate_pos(xy2pos(19 * side, -10), angle), pivot)),
+      ...pos2arg(pos_add(rotate_pos(xy2pos(38 * side, 0), angle), pivot))
     ])
     context.quadraticCurveTo.apply(context, [
-      ...pos2arg(pos_add(rotate_pos(xy2pos(19 * side, -1), 0), pivot)),
+      ...pos2arg(pos_add(rotate_pos(xy2pos(19 * side, -1), angle), pivot)),
       ...pos2arg(pivot)
     ])
   }]
@@ -103,10 +103,10 @@ function draw() {
 
   const x = 118
   const y = 139
-  const angle = 0 // new Date() / 400
+  const angle = (Math.PI / 2 * 3) % (Math.PI * 2)
 
   for (let dx = 0; dx <= 24; dx += 24) {
-    context.beginPath();
+    context.beginPath()
     context.moveTo.apply(context, pos2arg(pos_add(rotate_pos(xy2pos(dx + -12, -30), angle), {x, y})))
     context.lineTo.apply(context, pos2arg(pos_add(rotate_pos(xy2pos(dx + -18, -4), angle), {x, y})))
     context.lineTo.apply(context, pos2arg(pos_add(rotate_pos(xy2pos(dx + -16, 30), angle), {x, y})))
@@ -119,8 +119,8 @@ function draw() {
     context.stroke()
   }
 
-  context.lineWidth = 0.9;
-  context.beginPath();
+  context.lineWidth = 0.9
+  context.beginPath()
   context.moveTo.apply(context, pos2arg(pos_add(rotate_pos(xy2pos(-11, -4), angle), {x, y})))
   context.lineTo.apply(context, pos2arg(pos_add(rotate_pos(xy2pos(11, -4), angle), {x, y})))
   context.lineTo.apply(context, pos2arg(pos_add(rotate_pos(xy2pos(11, 21), angle), {x, y})))
@@ -131,24 +131,28 @@ function draw() {
   context.strokeStyle = 'black'
   context.stroke()
 
-  let windAngle = angle + new Date() / 2000
-  windAngle = Math.PI - windAngle % (Math.PI * 2)
-  const angleVoile = windAngle - Math.PI
-  context.lineWidth = 0.9;
+  let windAngle = (new Date() / 2000) % (Math.PI * 2)
+  let relatifWindAngle = angle - windAngle
+  windAngle = Math.PI - windAngle
+  context.lineWidth = 0.9
   context.beginPath()
   const pivot = pos_add(rotate_pos(xy2pos(0, 3), angle), {x, y})
   context.moveTo.apply(context, pos2arg(pivot))
   let a = 1
   for ( ; a <= _allures.length; a++) {
-    if (Math.abs(windAngle) <= _allures[a - 1][0] * Math.PI / 180) {
+    if (Math.abs(relatifWindAngle) <= _allures[a - 1][0] * Math.PI / 180) {
       context.fillStyle = 'blue'
       context.fillText('Allure : ' + _allures[--a][1], 10, 50)
       context.fillText('Vitesse : ' + Math.round(_allures[a][2] * 100) + '%', 10, 70)
       break
     }
   }
+  if (!_allures[a]) {
+    console.log(relatifWindAngle)
+    a = 0
+  }
   const drawVoile = _allures[a][3] || (() => console.log('nothing'))
-  drawVoile(context, angleVoile, windAngle, pivot)
+  drawVoile(context, angle, pivot)
   context.closePath()
   context.fillStyle = '#F20000'
   context.fill()
@@ -162,6 +166,14 @@ function draw() {
     ...pos2arg(pos_add(rotate_pos(xy2pos(0, 10), windAngle), pos))
   ])
   context.strokeStyle = '#ff0000'
+  context.stroke()
+  const pos2 = xy2pos(90, 25)
+  canvas_arrow.apply(null, [
+    context,
+    ...pos2arg(pos_add(rotate_pos(xy2pos(0, -10), relatifWindAngle), pos2)),
+    ...pos2arg(pos_add(rotate_pos(xy2pos(0, 10), relatifWindAngle), pos2))
+  ])
+  context.strokeStyle = '#00ff00'
   context.stroke()
   context.fillStyle = '#ff0000'
   context.font = '16px serif'
